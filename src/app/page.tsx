@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { getTemplate, templatesIds } from './helpers/getTemplate';
+import { getTemplate, templatesIds } from '../helpers/getTemplate';
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-5 pb-20 bg-[#191919] text-white min-h-screen">
+    <main className="flex flex-col gap-5 pb-20 bg-[#191919] text-white">
       <div className="flex gap-5 p-24">
         {templatesIds.map((id) => (
           <Link
@@ -14,7 +14,7 @@ export default function Home() {
           </Link>
         ))}
       </div>
-      <div className="grid grid-cols-3 grid-flow-row gap-5 px-10">
+      <div className="grid grid-cols-2 px-10 gap-5">
         {templatesIds.map((id) => {
           const Template = getTemplate(id)!;
           return (
