@@ -4,7 +4,7 @@ type Props = {};
 
 export default function Template1({}: Props) {
   return (
-    <main className="w-[800px] bg-[#013C74] flex">
+    <main className="w-full max-w-[800px] h-max bg-[#013C74] flex text-black">
       <section className="text-white w-[30%] h-full pt-2 pb-10">
         <div className="px-3">
           <h1 className="text-3xl font-semibold">John Smith</h1>
@@ -129,7 +129,7 @@ export default function Template1({}: Props) {
           </ul>
         </section>
       </section>
-      <aside className="w-[70%] flex flex-col px-3 pt-5 bg-white h-full pb-20">
+      <aside className="w-[70%] flex flex-col px-3 pt-5 bg-white text-black h-full pb-20">
         <p className="text-[13px]">
           IT Professional with over 10 years of experience in IT department
           management for international logistics companies. I can implement

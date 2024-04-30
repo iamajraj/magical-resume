@@ -4,7 +4,7 @@ type Props = {};
 
 export default function Template3({}: Props) {
   return (
-    <main className="w-[800px] flex flex-col px-7 py-12 bg-white text-black">
+    <main className="w-full max-w-[800px] h-max flex flex-col px-7 py-12 bg-white text-black">
       <div className="text-center space-y-2">
         <h1 className="text-4xl font-medium">Mohsin Alshammari</h1>
         <p className="text-2xl">Product Manager</p>

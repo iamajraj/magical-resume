@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Template2() {
   return (
-    <main className="w-[800px] flex flex-col px-5 py-8 bg-white text-black">
+    <main className="w-full max-w-[800px] h-max flex flex-col px-5 py-8 bg-white text-black">
       <h1 className="text-3xl font-bold text-[#013C74]">John Smith</h1>
       <p className="opacity-90 font-medium text-[#013C74]">
         IT Project Manager

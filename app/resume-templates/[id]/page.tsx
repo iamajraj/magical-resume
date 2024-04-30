@@ -1,27 +1,12 @@
 import React from 'react';
-import Template1 from '../../components/templates/Template1';
-import Template2 from '../../components/templates/Template2';
 import Link from 'next/link';
-import Template3 from '../../components/templates/Template3';
+import { getTemplate } from '../../helpers/getTemplate';
 
 type Props = {
   params: {
     id: string;
   };
 };
-
-function getTemplate(id: number) {
-  switch (id) {
-    case 1:
-      return Template1;
-    case 2:
-      return Template2;
-    case 3:
-      return Template3;
-    default:
-      return null;
-  }
-}
 
 function Template({ params: { id } }: Props) {
   const FoundTemplate = getTemplate(Number(id));
