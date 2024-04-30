@@ -14,6 +14,10 @@ export default function Home() {
           </Link>
         ))}
       </div>
+      <div className="pb-14">
+        <h1 className="text-center text-5xl font-bold">Magical Resume</h1>
+        <p className="text-center">Coming Soon</p>
+      </div>
       <div className="grid grid-cols-2 px-10 gap-5">
         {templatesIds.map((id) => {
           const Template = getTemplate(id)!;
