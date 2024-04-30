@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const templatesIds = [1, 2];
+const templatesIds = [1, 2, 3];
 
 export default function Home() {
   return (

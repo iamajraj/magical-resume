@@ -4,7 +4,7 @@ type Props = {};
 
 export default function Template1({}: Props) {
   return (
-    <main className="w-full max-w-[800px] bg-[#013C74] flex">
+    <main className="w-[800px] bg-[#013C74] flex">
       <section className="text-white w-[30%] h-full pt-2 pb-10">
         <div className="px-3">
           <h1 className="text-3xl font-semibold">John Smith</h1>

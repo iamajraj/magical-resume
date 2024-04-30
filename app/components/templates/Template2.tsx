@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Template2() {
   return (
-    <main className="w-full max-w-[800px] flex flex-col px-5 py-8 bg-white text-black">
+    <main className="w-[800px] flex flex-col px-5 py-8 bg-white text-black">
       <h1 className="text-3xl font-bold text-[#013C74]">John Smith</h1>
       <p className="opacity-90 font-medium text-[#013C74]">
         IT Project Manager
@@ -113,7 +113,7 @@ export default function Template2() {
         </ul>
       </section>
 
-      <section className="mt-10">
+      <section className="mt-5">
         <div className="flex items-center gap-2">
           <div className="bg-[#013C74] w-max p-1 text-white">
             <svg
@@ -155,7 +155,7 @@ export default function Template2() {
         </ul>
       </section>
 
-      <section className="mt-10">
+      <section className="mt-5">
         <div className="flex items-center gap-2">
           <div className="bg-[#013C74] w-max p-1 text-white">
             <svg
@@ -200,7 +200,7 @@ export default function Template2() {
         </div>
       </section>
 
-      <section className="mt-10">
+      <section className="mt-5">
         <div className="flex items-center gap-2">
           <div className="bg-[#013C74] w-max p-1 text-white">
             <svg
@@ -250,7 +250,7 @@ export default function Template2() {
         </div>
       </section>
 
-      <section className="mt-10">
+      <section className="mt-5">
         <div className="flex items-center gap-2">
           <div className="bg-[#013C74] w-max p-1 text-white">
             <svg

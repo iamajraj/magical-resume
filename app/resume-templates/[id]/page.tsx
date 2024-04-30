@@ -2,6 +2,7 @@ import React from 'react';
 import Template1 from '../../components/templates/Template1';
 import Template2 from '../../components/templates/Template2';
 import Link from 'next/link';
+import Template3 from '../../components/templates/Template3';
 
 type Props = {
   params: {
@@ -15,6 +16,8 @@ function getTemplate(id: number) {
       return Template1;
     case 2:
       return Template2;
+    case 3:
+      return Template3;
     default:
       return null;
   }
