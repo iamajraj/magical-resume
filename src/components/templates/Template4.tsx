@@ -105,8 +105,8 @@ export default function Template4({}: Props) {
                   DOCTOR OF PHARMACY, JASPER UNIVERSITY
                 </p>
                 <p className="text-[13px] mb-2">
-                  Received the Dean's List award for maintaining a high grade
-                  point average and academic excellence.
+                  Received the Dean&apos;s List award for maintaining a high
+                  grade point average and academic excellence.
                 </p>
               </div>
             </li>

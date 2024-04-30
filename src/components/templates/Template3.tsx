@@ -190,7 +190,7 @@ export default function Template3({}: Props) {
             <ul className="ml-10 list-disc text-[13px]/[17px] mt-1">
               <li>
                 Developed and executed product strategies as a Senior Product
-                Manager, gaining a strong understanding of Riyadh's tech
+                Manager, gaining a strong understanding of Riyadh&apos;s tech
                 industry trends.
               </li>
               <li>
