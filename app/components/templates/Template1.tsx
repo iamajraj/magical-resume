@@ -2,15 +2,16 @@ import React from 'react';
 
 type Props = {};
 
-function Template1({}: Props) {
+export default function Template1({}: Props) {
   return (
-    <main className="w-full max-w-4xl bg-[#013C74] flex">
+    <main className="w-full max-w-[800px] bg-[#013C74] flex">
       <section className="text-white w-[30%] h-full pt-2 pb-10">
         <div className="px-3">
-          <h1 className="text-[30px]/[35px] font-semibold">John Smith</h1>
+          <h1 className="text-3xl font-semibold">John Smith</h1>
           <p className="opacity-80">IT Project Manager</p>
         </div>
 
+        {/* Personal Info */}
         <section className="mt-3">
           <h1 className="text-[15px] py-1 px-3 bg-[#002E58] font-medium">
             Personal Info
@@ -41,6 +42,7 @@ function Template1({}: Props) {
           </ul>
         </section>
 
+        {/* Skills */}
         <section className="mt-3">
           <h1 className="text-[15px] py-1 px-3 bg-[#002E58] font-medium">
             Skills
@@ -67,6 +69,7 @@ function Template1({}: Props) {
           </ul>
         </section>
 
+        {/* Software */}
         <section className="mt-3">
           <h1 className="text-[15px] py-1 px-3 bg-[#002E58] font-medium">
             Software
@@ -103,6 +106,7 @@ function Template1({}: Props) {
           </ul>
         </section>
 
+        {/* Languages */}
         <section className="mt-3">
           <h1 className="text-[15px] py-1 px-3 bg-[#002E58] font-medium">
             Languages
@@ -322,5 +326,3 @@ function Template1({}: Props) {
     </main>
   );
 }
-
-export default Template1;
