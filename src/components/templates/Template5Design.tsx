@@ -4,7 +4,7 @@ import Img from '../Img';
 
 type Props = {};
 
-export default function Template5({}: Props) {
+export default function Template5Design({}: Props) {
   return (
     <main className="w-full max-w-[800px] h-max flex flex-col bg-white text-black">
       {/* INFO */}

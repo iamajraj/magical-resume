@@ -9,7 +9,7 @@ const font = Puritan({
 
 type Props = {};
 
-export default function Template4({}: Props) {
+export default function Template4Design({}: Props) {
   return (
     <main
       className={`${font.className} w-full max-w-[800px] h-max flex flex-col p-5 bg-[#FDF8F1] text-black`}>

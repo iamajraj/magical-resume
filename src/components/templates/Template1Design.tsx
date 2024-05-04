@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {};
 
-export default function Template1({}: Props) {
+export default function Template1Design({}: Props) {
   return (
     <main className="w-full max-w-[800px] h-max bg-[#013C74] flex text-black">
       <section className="text-white w-[30%] h-full pt-2 pb-10">

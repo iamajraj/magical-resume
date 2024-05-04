@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Template2() {
+export default function Template2Design() {
   return (
     <main className="w-full max-w-[800px] h-max flex flex-col px-5 py-8 bg-white text-black">
       <h1 className="text-3xl font-bold text-[#013C74]">John Smith</h1>

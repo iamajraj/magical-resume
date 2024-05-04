@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getTemplate, templatesIds } from '../helpers/getTemplate';
+import { getTemplateDesign, templatesIds } from '../helpers/getTemplate';
 
 export default function Home() {
   return (
@@ -20,11 +20,11 @@ export default function Home() {
       </div>
       <div className="grid grid-cols-2 px-10 gap-5">
         {templatesIds.map((id) => {
-          const Template = getTemplate(id)!;
+          const TemplateDesign = getTemplateDesign(id)!;
           return (
             <div key={`template-${id}`} className="h-max">
               <p>Template {id}</p>
-              <Template />
+              <TemplateDesign />
             </div>
           );
         })}
