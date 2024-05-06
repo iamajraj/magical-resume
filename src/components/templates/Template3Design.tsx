@@ -118,8 +118,8 @@ export default function Template3Design({ data, isPremium }: Props) {
         <h1 className="font-bold border-b-2 border-b-black">EXPERIENCE</h1>
         <ul>
           {data?.experience ? (
-            data?.experience.map((exp: any) => (
-              <li>
+            data?.experience.map((exp, i) => (
+              <li key={`Experience-Design-${i}`}>
                 <div className="flex items-center gap-1 font-bold text-[13px]">
                   <p>{exp?.title}</p>
                   <p>|</p>
@@ -133,8 +133,8 @@ export default function Template3Design({ data, isPremium }: Props) {
                 </div>
 
                 <ul className="ml-10 list-disc text-[13px]/[17px] mt-1">
-                  {exp?.points?.map((point: any) => (
-                    <li>{point}</li>
+                  {exp?.points?.map((point, i) => (
+                    <li key={`Point-Design-${i}`}>{point}</li>
                   ))}
                 </ul>
               </li>
@@ -343,8 +343,8 @@ export default function Template3Design({ data, isPremium }: Props) {
         <h1 className="font-bold border-b-2 border-b-black">EDUCATION</h1>
         <ul className="max-w-[400px] text-[13px]">
           {data?.education ? (
-            data?.education?.map((ed: any) => (
-              <li>
+            data?.education?.map((ed, i) => (
+              <li key={`Education-Design-${i}`}>
                 <div className="w-full flex items-center justify-between">
                   <p className="font-bold">{ed?.institute}</p>
                   <p>{ed?.passingYear}</p>
@@ -394,7 +394,9 @@ export default function Template3Design({ data, isPremium }: Props) {
         <h1 className="font-bold border-b-2 border-b-black">Skills</h1>
         <div className="grid grid-cols-3 text-[13px]">
           {data?.skills ? (
-            data?.skills?.map((skill: any) => <p>{skill}</p>)
+            data?.skills?.map((skill, i) => (
+              <p key={`Skill-Design-${i}`}>{skill}</p>
+            ))
           ) : (
             <>
               <p>Ai Applications</p>

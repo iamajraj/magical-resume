@@ -362,7 +362,10 @@ function ExperienceEditor({
     <div className="flex flex-col">
       <div>
         {data?.experience?.map((exp, i: number) => (
-          <ContainerWrapper smallTitle title={`Experience - ${i + 1}`}>
+          <ContainerWrapper
+            key={`Experience-Container-${i}`}
+            smallTitle
+            title={`Experience - ${i + 1}`}>
             <ExperienceInputsContainer
               data={data}
               i={i}
@@ -506,7 +509,12 @@ function ExperiencePointsEditor({
     <ContainerWrapper title="Points" smallTitle>
       <div className={`flex flex-col gap-3 overflow-hidden`}>
         {points?.map((point: any, i: number) => (
-          <EditorInput value={point} point-id={i} onChange={handleChange} />
+          <EditorInput
+            key={`points-${i}`}
+            value={point}
+            point-id={i}
+            onChange={handleChange}
+          />
         ))}
       </div>
     </ContainerWrapper>
@@ -544,7 +552,10 @@ function EducationEditor({
     <div className="flex flex-col">
       <div>
         {data?.education?.map((ed, i: number) => (
-          <ContainerWrapper smallTitle title={`Education - ${i + 1}`}>
+          <ContainerWrapper
+            key={`Education-${i}`}
+            smallTitle
+            title={`Education - ${i + 1}`}>
             <div
               className="relative flex flex-col gap-3"
               key={`education-${i}`}>
