@@ -1,10 +1,20 @@
 import React from 'react';
+import Img from '../Img';
 
-type Props = {};
+type Props = {
+  isPremium?: boolean;
+};
 
-export default function Template1Design({}: Props) {
+export default function Template1Design({ isPremium = true }: Props) {
   return (
-    <main className="w-full max-w-[800px] h-max bg-[#013C74] flex text-black">
+    <main className="w-full max-w-[800px] h-max bg-[#013C74] flex text-black relative">
+      {isPremium && (
+        <Img
+          src="https://cdn-icons-png.flaticon.com/512/1478/1478930.png"
+          alt="premium"
+          className="w-16 absolute -top-6 -right-6"
+        />
+      )}
       <section className="text-white w-[30%] h-full pt-2 pb-10">
         <div className="px-3">
           <h1 className="text-3xl font-semibold">John Smith</h1>

@@ -1,12 +1,24 @@
 import React from 'react';
+import { Template3DataType } from '../editors/Template3Editor';
+import Img from '../Img';
 
 type Props = {
-  data?: any;
+  data?: Template3DataType;
+  isPremium?: boolean;
 };
 
-export default function Template3Design({ data }: Props) {
+export default function Template3Design({ data, isPremium }: Props) {
   return (
-    <main className="w-[800px] h-[1100px] flex flex-col px-7 py-12 bg-white text-black">
+    <main
+      id="template-3"
+      className="shrink-0 w-[800px] h-[1100px] flex flex-col px-7 py-12 bg-white text-black relative">
+      {isPremium && (
+        <Img
+          src="https://cdn-icons-png.flaticon.com/512/1478/1478930.png"
+          alt="premium"
+          className="w-16 absolute -top-6 -right-6"
+        />
+      )}
       <div className="text-center space-y-2">
         <h1 className="text-4xl font-medium">
           {data?.info?.name ?? 'Mohsin Alshammari'}
@@ -330,55 +342,50 @@ export default function Template3Design({ data }: Props) {
       <section>
         <h1 className="font-bold border-b-2 border-b-black">EDUCATION</h1>
         <ul className="max-w-[400px] text-[13px]">
-          <li>
-            <div className="w-full flex items-center justify-between">
-              <p className="font-bold">University of Nevada, Reno</p>
-              <p>2018</p>
-            </div>
-            <p className="ml-2">
-              Master of Business Administration - MBA (GPA: 3.8)
-            </p>
-          </li>
-          <li>
-            <div className="w-full flex items-center justify-between">
-              <p className="font-bold">University of Nevada, Reno</p>
-              <p>2014</p>
-            </div>
-            <p className="ml-2">Bachelor of Science (B.S.)</p>
-          </li>
-          <li>
-            <div className="w-full flex items-center justify-between">
-              <p className="font-bold">University of Nevada, Reno</p>
-              <p>2014</p>
-            </div>
-            <p className="ml-2">Bachelor of Arts (B.A.)</p>
-          </li>
-          <li>
-            <div className="w-full flex items-center justify-between">
-              <p className="font-bold">University of Nevada, Reno</p>
-              <p>2014</p>
-            </div>
-            <p className="ml-2">Bachelor of Science (B.S.)</p>
-          </li>
-          <li>
-            <p className="font-bold opacity-60">Visiting Student Program</p>
-            <ul>
-              <li className="w-full flex items-center justify-between opacity-70">
-                <div className="ml-3 space-x-2 flex items-center">
-                  <p>-</p>
-                  <p>New York University - Stern School of Business</p>
+          {data?.education ? (
+            data?.education?.map((ed: any) => (
+              <li>
+                <div className="w-full flex items-center justify-between">
+                  <p className="font-bold">{ed?.institute}</p>
+                  <p>{ed?.passingYear}</p>
                 </div>
-                <p>2013</p>
+                <p className="ml-2">{ed?.degree}</p>
               </li>
-              <li className="w-full flex items-center justify-between opacity-70">
-                <div className="ml-3 space-x-2 flex items-center">
-                  <p>-</p>
-                  <p>London School of Economics</p>
+            ))
+          ) : (
+            <>
+              <li>
+                <div className="w-full flex items-center justify-between">
+                  <p className="font-bold">University of Nevada, Reno</p>
+                  <p>2018</p>
                 </div>
-                <p>2014</p>
+                <p className="ml-2">
+                  Master of Business Administration - MBA (GPA: 3.8)
+                </p>
               </li>
-            </ul>
-          </li>
+              <li>
+                <div className="w-full flex items-center justify-between">
+                  <p className="font-bold">University of Nevada, Reno</p>
+                  <p>2014</p>
+                </div>
+                <p className="ml-2">Bachelor of Science (B.S.)</p>
+              </li>
+              <li>
+                <div className="w-full flex items-center justify-between">
+                  <p className="font-bold">University of Nevada, Reno</p>
+                  <p>2014</p>
+                </div>
+                <p className="ml-2">Bachelor of Arts (B.A.)</p>
+              </li>
+              <li>
+                <div className="w-full flex items-center justify-between">
+                  <p className="font-bold">University of Nevada, Reno</p>
+                  <p>2014</p>
+                </div>
+                <p className="ml-2">Bachelor of Science (B.S.)</p>
+              </li>
+            </>
+          )}
         </ul>
       </section>
 
@@ -386,20 +393,26 @@ export default function Template3Design({ data }: Props) {
       <section className="mt-5">
         <h1 className="font-bold border-b-2 border-b-black">Skills</h1>
         <div className="grid grid-cols-3 text-[13px]">
-          <p>Ai Applications</p>
-          <p>Agile Management</p>
-          <p>JavaScript</p>
-          <p>Ai programming and content writing</p>
-          <p>MongoDB</p>
-          <p>Roadmaps</p>
-          <p>OpenAi and Anthropic Api</p>
-          <p>Financial Analysis</p>
-          <p>Software as a Service (SaaS)</p>
-          <p>Operations Management</p>
-          <p>React.js</p>
-          <p>Process Improvement</p>
-          <p>Team Leadership</p>
-          <p>Nextjs</p>
+          {data?.skills ? (
+            data?.skills?.map((skill: any) => <p>{skill}</p>)
+          ) : (
+            <>
+              <p>Ai Applications</p>
+              <p>Agile Management</p>
+              <p>JavaScript</p>
+              <p>Ai programming and content writing</p>
+              <p>MongoDB</p>
+              <p>Roadmaps</p>
+              <p>OpenAi and Anthropic Api</p>
+              <p>Financial Analysis</p>
+              <p>Software as a Service (SaaS)</p>
+              <p>Operations Management</p>
+              <p>React.js</p>
+              <p>Process Improvement</p>
+              <p>Team Leadership</p>
+              <p>Nextjs</p>
+            </>
+          )}
         </div>
       </section>
     </main>

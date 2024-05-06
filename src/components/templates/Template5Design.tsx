@@ -1,12 +1,21 @@
-import Image from 'next/image';
 import React from 'react';
 import Img from '../Img';
 
-type Props = {};
+type Props = {
+  isPremium?: boolean;
+};
 
-export default function Template5Design({}: Props) {
+export default function Template5Design({ isPremium }: Props) {
   return (
-    <main className="w-full max-w-[800px] h-max flex flex-col bg-white text-black">
+    <main className="w-full max-w-[800px] h-max flex flex-col bg-white text-black relative">
+      {isPremium && (
+        <Img
+          src="https://cdn-icons-png.flaticon.com/512/1478/1478930.png"
+          alt="premium"
+          className="w-16 absolute -top-6 -right-6"
+        />
+      )}
+
       {/* INFO */}
       <section className="flex justify-between gap-5 bg-[#34678C] px-5 py-7 pb-6">
         {/* USER INFO */}

@@ -1,8 +1,20 @@
 import React from 'react';
+import Img from '../Img';
 
-export default function Template2Design() {
+type Props = {
+  isPremium?: boolean;
+};
+
+export default function Template2Design({ isPremium }: Props) {
   return (
-    <main className="w-full max-w-[800px] h-max flex flex-col px-5 py-8 bg-white text-black">
+    <main className="w-full max-w-[800px] h-max flex flex-col px-5 py-8 bg-white text-black relative">
+      {isPremium && (
+        <Img
+          src="https://cdn-icons-png.flaticon.com/512/1478/1478930.png"
+          alt="premium"
+          className="w-16 absolute -top-6 -right-6"
+        />
+      )}
       <h1 className="text-3xl font-bold text-[#013C74]">John Smith</h1>
       <p className="opacity-90 font-medium text-[#013C74]">
         IT Project Manager

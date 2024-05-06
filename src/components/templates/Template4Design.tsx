@@ -1,18 +1,28 @@
 import React from 'react';
 
 import { Puritan } from 'next/font/google';
+import Img from '../Img';
 
 const font = Puritan({
   weight: ['400', '700'],
   subsets: ['latin'],
 });
 
-type Props = {};
+type Props = {
+  isPremium?: boolean;
+};
 
-export default function Template4Design({}: Props) {
+export default function Template4Design({ isPremium }: Props) {
   return (
     <main
-      className={`${font.className} w-full max-w-[800px] h-max flex flex-col p-5 bg-[#FDF8F1] text-black`}>
+      className={`${font.className} w-full max-w-[800px] h-max flex flex-col p-5 bg-[#FDF8F1] text-black relative`}>
+      {isPremium && (
+        <Img
+          src="https://cdn-icons-png.flaticon.com/512/1478/1478930.png"
+          alt="premium"
+          className="w-16 absolute -top-6 -right-6"
+        />
+      )}
       {/* wrapper */}
       <div className="w-full h-full border-[3px] rounded-2xl border-[#BF1E00] px-10 py-12">
         {/* INFO */}
