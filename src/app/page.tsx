@@ -20,11 +20,12 @@ export default function Home() {
       </div>
       <div className="grid grid-cols-2 px-10 gap-5">
         {templatesIds.map((id) => {
+          const isPremium = id === 0;
           const TemplateDesign = getTemplateDesign(id)!;
           return (
             <div key={`template-${id}`} className="h-max">
               <p>Template {id}</p>
-              <TemplateDesign />
+              <TemplateDesign isPremium={isPremium} />
             </div>
           );
         })}
