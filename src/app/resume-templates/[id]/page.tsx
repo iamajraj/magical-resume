@@ -22,11 +22,7 @@ function Template({ params: { id } }: Props) {
     );
   }
 
-  return (
-    <div className="relative bg-[#191919] w-full p-10">
-      <FoundTemplateEditor />
-    </div>
-  );
+  return <FoundTemplateEditor />;
 }
 
 export default Template;

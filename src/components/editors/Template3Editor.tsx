@@ -1,10 +1,8 @@
 'use client';
 
-import React, { ChangeEvent, ReactNode, useState } from 'react';
-import EditorInput from '../shared/EditorInput';
+import React, { useState } from 'react';
 import Template3Design from '../templates/Template3Design';
-import * as htmlToImage from 'html-to-image';
-import { jsPDF } from 'jspdf';
+import EditorInput from '../shared/EditorInput';
 
 type Props = {};
 
@@ -72,16 +70,91 @@ export type Template3DataType = typeof DEFAULT_DATA;
 
 function Template3Editor({}: Props) {
   const [data, setData] = useState<Template3DataType>(DEFAULT_DATA);
+  const [openMyContent, setOpenMyContent] = useState(false);
 
   return (
-    <div className="flex gap-5">
-      <Template3SidePanel data={data} setData={setData} />
-      <div className="w-full overflow-x-scroll">
-        <Template3Design data={data} />
+    <div className="flex flex-col h-screen relative">
+      {/* Navbar for Editor */}
+      <div className="w-full py-2 px-3 flex justify-between sticky top-0 z-[999]">
+        <p className="font-bold text-lg px-4 py-2 bg-secondary rounded-full shadow-lg">
+          novoresume
+        </p>
+        <div className="py-1 pr-1 pl-5 rounded-full bg-secondary flex items-center gap-5 shadow-lg">
+          <p>Font</p>
+          <p>Theme</p>
+          <p>Layout</p>
+          <p>Format</p>
+          <button className="h-full px-5 bg-[#2bd3bd] rounded-full">
+            Download
+          </button>
+        </div>
+
+        <div className="p-1.5 rounded-full bg-secondary shadowl-lg">
+          <div className="h-full w-full px-6 rounded-full text-black bg-white/70 flex items-center justify-center">
+            <p>My Documents</p>
+          </div>
+        </div>
+      </div>
+      <div className="mt-10 w-full h-full flex gap-5 justify-between relative overflow-hidden">
+        <div className="flex gap-3 pl-5 sticky top-0 pb-10">
+          <div className="flex flex-col gap-7 mt-9">
+            {openMyContent && (
+              <button
+                onClick={() => setOpenMyContent(false)}
+                className="bg-secondary cursor-pointer mx-auto w-[40px] h-[40px] rounded-full">
+                <p className="hover:scale-110">X</p>
+              </button>
+            )}
+            <button
+              onClick={() => setOpenMyContent(!openMyContent)}
+              className={`bg-secondary rounded-tl-xl rounded-tr-xl py-5 px-2 ${
+                openMyContent
+                  ? 'w-[70px] h-[70px] text-[12px] text-green-400'
+                  : 'w-[80px] h-[100px] text-sm'
+              }`}>
+              My Content
+            </button>
+            <button
+              className={`bg-secondary py-5 px-2 ${
+                openMyContent
+                  ? 'w-[70px] h-[70px] text-[12px]'
+                  : 'w-[80px] h-[100px] text-sm'
+              }`}>
+              Switch Template
+            </button>
+            <button
+              className={`bg-secondary rounded-bl-xl rounded-br-xl py-5 px-2 ${
+                openMyContent
+                  ? 'w-[70px] h-[70px] text-[12px]'
+                  : 'w-[80px] h-[100px] text-sm'
+              }`}>
+              AI Assistant
+            </button>
+          </div>
+          {openMyContent && (
+            <div className="flex flex-col gap-2">
+              <h1 className="text-xl">
+                My Content -{' '}
+                <span className="text-sm text-gray-400">Quick Access</span>
+              </h1>
+              <div className="px-2 py-1 bg-secondary rounded-xl">
+                <Template3SidePanel data={data} setData={setData} />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="h-full">
+          <Template3Design data={data} />
+        </div>
+
+        {/* just for alignment */}
+        <div></div>
       </div>
     </div>
   );
 }
+
+export default Template3Editor;
 
 function Template3SidePanel({
   data,
@@ -90,28 +163,6 @@ function Template3SidePanel({
   data: Template3DataType;
   setData: React.Dispatch<React.SetStateAction<Template3DataType>>;
 }) {
-  const saveAsPDF = () => {
-    htmlToImage
-      .toCanvas(document.getElementById('template-3')!, { quality: 1 })
-      .then(function (canvas) {
-        const pdf = new jsPDF('p', 'pt', 'a4');
-        const imgProps = pdf.getImageProperties(canvas.toDataURL());
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        pdf.addImage(
-          canvas.toDataURL(),
-          'PNG',
-          0,
-          0,
-          pdfWidth,
-          pdfHeight,
-          'DKJFDSKF',
-          'NONE'
-        );
-        pdf.save('download.pdf');
-      });
-  };
-
   const handleExperienceChange = (experience: any[]) => {
     setData((data) => ({
       ...data,
@@ -134,7 +185,7 @@ function Template3SidePanel({
   };
 
   return (
-    <div className="shrink-0 min-w-[250px] text-white w-[25%] border-r pr-4">
+    <div className="w-full shrink-0 min-w-[250px] text-white">
       {/* BASIC INFO */}
       <ContainerWrapper title="Basic Info">
         <BasicInfoEditor data={data} setData={setData} />
@@ -190,13 +241,13 @@ function ContainerWrapper({
   title,
   smallTitle = false,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
   title: string;
   smallTitle?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="relative border px-2 pt-2 pb-4">
+    <div className="relative px-2 pt-2 pb-4">
       <button
         onClick={() => setOpen(!open)}
         className="select-none text-sm absolute top-1 right-1 cursor-pointer">
@@ -230,13 +281,18 @@ function ContainerWrapper({
           </svg>
         )}
       </button>
-      <p
+      <div
         onClick={() => setOpen(!open)}
-        className={`pb-4 select-none w-full cursor-pointer ${
-          smallTitle ? 'text-sm' : 'text-lg'
-        }`}>
-        {title}
-      </p>
+        className="pb-4 w-full cursor-pointer">
+        <p
+          className={`select-none w-max ${
+            smallTitle ? 'text-sm' : 'text-lg'
+          } relative before:absolute before:bottom-0 before:left-0 before:w-full before:h-[1px]  ${
+            open ? 'text-green-400 before:bg-green-400!' : 'before:bg-white'
+          } `}>
+          {title}
+        </p>
+      </div>
       <div className={`${open ? 'h-auto' : 'h-0'} overflow-hidden`}>
         {children}
       </div>
@@ -499,7 +555,7 @@ function ExperiencePointsEditor({
     points: Template3DataType['experience'][0]['points']
   ) => void;
 }) {
-  const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const idx = Number(ev.target.getAttribute('point-id'));
     points.splice(idx, 1, ev.target.value);
     handlePointsChange(points);
@@ -680,5 +736,3 @@ function SkillEditor({
     </div>
   );
 }
-
-export default Template3Editor;

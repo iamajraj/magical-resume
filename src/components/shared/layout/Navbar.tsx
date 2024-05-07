@@ -4,7 +4,7 @@ type Props = {};
 
 export default function Navbar({}: Props) {
   return (
-    <div className="bg-[#191919] text-white border-b border-b-gray-600 w-full">
+    <div className="bg-transparent text-white border-b border-b-gray-600 w-full">
       <div className="w-full max-w-4xl mx-auto flex items-center justify-between">
         <div></div>
         <ul className="flex items-center justify-center gap-5 py-5">

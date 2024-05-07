@@ -1,6 +1,7 @@
 import React from 'react';
 import { Template3DataType } from '../editors/Template3Editor';
 import Img from '../Img';
+import EditorText from '../shared/EditorText';
 
 type Props = {
   data?: Template3DataType;
@@ -11,7 +12,7 @@ export default function Template3Design({ data, isPremium }: Props) {
   return (
     <main
       id="template-3"
-      className="shrink-0 w-[800px] h-[1100px] flex flex-col px-7 py-12 bg-white text-black relative">
+      className="shrink-0 w-[1212px] h-[1100px] aspect-[16/9] flex flex-col px-7 py-12 bg-white text-black relative">
       {isPremium && (
         <Img
           src="https://cdn-icons-png.flaticon.com/512/1478/1478930.png"
@@ -20,14 +21,16 @@ export default function Template3Design({ data, isPremium }: Props) {
         />
       )}
       <div className="text-center space-y-2">
-        <h1 className="text-4xl font-medium">
+        <EditorText className="text-6xl font-medium">
           {data?.info?.name ?? 'Mohsin Alshammari'}
-        </h1>
-        <p className="text-2xl">{data?.info?.title ?? 'Product Manager'}</p>
+        </EditorText>
+        <EditorText className="text-4xl">
+          {data?.info?.title ?? 'Product Manager'}
+        </EditorText>
       </div>
 
       {/* Social Info */}
-      <div className="flex items-center gap-2 text-[13px] justify-center font-medium">
+      <div className="mt-2 flex items-center gap-2 justify-center font-medium">
         <div className="text-black flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +41,9 @@ export default function Template3Design({ data, isPremium }: Props) {
               fill="#000"
               d="M22 3.47v17.06A1.47 1.47 0 0120.53 22H3.47A1.47 1.47 0 012 20.53V3.47A1.47 1.47 0 013.47 2h17.06A1.47 1.47 0 0122 3.47zM7.882 9.648h-2.94v9.412h2.94V9.647zm.265-3.235a1.694 1.694 0 00-1.682-1.706h-.053a1.706 1.706 0 000 3.412 1.694 1.694 0 001.735-1.653v-.053zm10.912 6.93c0-2.83-1.8-3.93-3.588-3.93a3.353 3.353 0 00-2.977 1.517h-.082V9.647H9.647v9.412h2.941v-5.006a1.953 1.953 0 011.765-2.106h.112c.935 0 1.63.588 1.63 2.07v5.042h2.94l.024-5.718z"></path>
           </svg>
-          <p>in/{data?.socialInfo?.linkedin ?? 'mohsinalshammari'}</p>
+          <EditorText>
+            in/{data?.socialInfo?.linkedin ?? 'mohsinalshammari'}
+          </EditorText>
         </div>
         <p className="text-[11px]">•</p>
         <div className="text-black flex items-center gap-1">
@@ -60,7 +65,9 @@ export default function Template3Design({ data, isPremium }: Props) {
               d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
             />
           </svg>
-          <p>{data?.socialInfo?.address ?? 'Santa Monica, California'}</p>
+          <EditorText>
+            {data?.socialInfo?.address ?? 'Santa Monica, California'}
+          </EditorText>
         </div>
         <p className="text-[11px]">•</p>
         <div className="text-black flex items-center gap-1">
@@ -77,7 +84,7 @@ export default function Template3Design({ data, isPremium }: Props) {
               d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
             />
           </svg>
-          <p>{data?.socialInfo?.phone ?? '7759978644'}</p>
+          <EditorText>{data?.socialInfo?.phone ?? '7759978644'}</EditorText>
         </div>
         <p className="text-[11px]">•</p>
         <div className="text-black flex items-center gap-1">
@@ -94,14 +101,16 @@ export default function Template3Design({ data, isPremium }: Props) {
               d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
             />
           </svg>
-          <p>{data?.socialInfo?.email ?? 'mohsinalshammari.jobs@gmail.com'}</p>
+          <EditorText>
+            {data?.socialInfo?.email ?? 'mohsinalshammari.jobs@gmail.com'}
+          </EditorText>
         </div>
       </div>
 
       {/* SUMMARY */}
-      <section>
-        <h1 className="font-bold border-b-2 border-b-black">SUMMARY</h1>
-        <p className="text-[13px] border-b-2">
+      <section className="mt-2">
+        <h1 className="font-bold border-b-2 border-b-black text-xl">SUMMARY</h1>
+        <EditorText className="border-b-2">
           {data?.summary ??
             `Experienced Product Manager with a proven track record of successfully
           launching and managing products from ideation to market. Skilled in
@@ -110,31 +119,35 @@ export default function Template3Design({ data, isPremium }: Props) {
           cross-functionally with teams such as engineering, design, sales, and
           marketing to ensure product success. Strong communication skills and
           ability to lead teams towards achieving goals.`}
-        </p>
+        </EditorText>
       </section>
 
       {/* Experience */}
       <section className="mt-5">
-        <h1 className="font-bold border-b-2 border-b-black">EXPERIENCE</h1>
+        <h1 className="font-bold border-b-2 border-b-black text-xl">
+          EXPERIENCE
+        </h1>
         <ul>
           {data?.experience ? (
             data?.experience.map((exp, i) => (
               <li key={`Experience-Design-${i}`}>
-                <div className="flex items-center gap-1 font-bold text-[13px]">
-                  <p>{exp?.title}</p>
+                <div className="flex items-center gap-1 font-bold ">
+                  <EditorText>{exp?.title}</EditorText>
                   <p>|</p>
-                  <p>{exp?.company}</p>
+                  <EditorText>{exp?.company}</EditorText>
                   <p>|</p>
-                  <p>{exp?.location}</p>
+                  <EditorText>{exp?.location}</EditorText>
                   <p>|</p>
-                  <p>
+                  <EditorText>
                     {exp?.start}-/{exp?.end}
-                  </p>
+                  </EditorText>
                 </div>
 
-                <ul className="ml-10 list-disc text-[13px]/[17px] mt-1">
+                <ul className="ml-10 list-disc mt-1">
                   {exp?.points?.map((point, i) => (
-                    <li key={`Point-Design-${i}`}>{point}</li>
+                    <li key={`Point-Design-${i}`}>
+                      <EditorText>{point}</EditorText>
+                    </li>
                   ))}
                 </ul>
               </li>
@@ -142,7 +155,7 @@ export default function Template3Design({ data, isPremium }: Props) {
           ) : (
             <>
               <li>
-                <div className="flex items-center gap-1 font-bold text-[13px]">
+                <div className="flex items-center gap-1 font-bold ">
                   <p>Founder</p>
                   <p>|</p>
                   <p>Magical Resume</p>
@@ -152,7 +165,7 @@ export default function Template3Design({ data, isPremium }: Props) {
                   <p>1 2022-4/2023</p>
                 </div>
 
-                <ul className="ml-10 list-disc text-[13px]/[17px] mt-1">
+                <ul className="ml-10 list-disc mt-1">
                   <li>
                     Partnered in the development of an AI-enabled resume writing
                     software, improving resume generation, personal branding,
@@ -181,7 +194,7 @@ export default function Template3Design({ data, isPremium }: Props) {
               </li>
 
               <li>
-                <div className="flex items-center gap-1 font-bold text-[13px]">
+                <div className="flex items-center gap-1 font-bold ">
                   <p>Product Manager</p>
                   <p>|</p>
                   <p>Claimyr</p>
@@ -191,7 +204,7 @@ export default function Template3Design({ data, isPremium }: Props) {
                   <p>2021-/2021</p>
                 </div>
 
-                <ul className="ml-10 list-disc text-[13px]/[17px] mt-1">
+                <ul className="ml-10 list-disc mt-1">
                   <li>
                     Oversaw the introduction of digital products in 15 states,
                     thereby expanding market reach and achieving over a million
@@ -220,7 +233,7 @@ export default function Template3Design({ data, isPremium }: Props) {
               </li>
 
               <li>
-                <div className="flex items-center gap-1 font-bold text-[13px]">
+                <div className="flex items-center gap-1 font-bold ">
                   <p>Product Manager</p>
                   <p>|</p>
                   <p>Network Operation Telecom CO.</p>
@@ -230,7 +243,7 @@ export default function Template3Design({ data, isPremium }: Props) {
                   <p>2019-/2021</p>
                 </div>
 
-                <ul className="ml-10 list-disc text-[13px]/[17px] mt-1">
+                <ul className="ml-10 list-disc mt-1">
                   <li>
                     Developed and executed product strategies as a Senior
                     Product Manager, gaining a strong understanding of
@@ -260,7 +273,7 @@ export default function Template3Design({ data, isPremium }: Props) {
               </li>
 
               <li>
-                <div className="flex items-center gap-1 font-bold text-[13px]">
+                <div className="flex items-center gap-1 font-bold ">
                   <p>Project Manager</p>
                   <p>|</p>
                   <p>Network Operation Telecom CO.</p>
@@ -270,7 +283,7 @@ export default function Template3Design({ data, isPremium }: Props) {
                   <p>2014-/2016</p>
                 </div>
 
-                <ul className="ml-10 list-disc text-[13px]/[17px] mt-1">
+                <ul className="ml-10 list-disc mt-1">
                   <li>
                     Managed project personnel to ensure on-time and
                     within-budget project progression.
@@ -296,7 +309,7 @@ export default function Template3Design({ data, isPremium }: Props) {
               </li>
 
               <li>
-                <div className="flex items-center gap-1 font-bold text-[13px]">
+                <div className="flex items-center gap-1 font-bold ">
                   <p>Interpreter</p>
                   <p>|</p>
                   <p>Northern Nevada International Center</p>
@@ -306,7 +319,7 @@ export default function Template3Design({ data, isPremium }: Props) {
                   <p>2011-/2012</p>
                 </div>
 
-                <ul className="ml-10 list-disc text-[13px]/[17px] mt-1">
+                <ul className="ml-10 list-disc mt-1">
                   <li>
                     Translated complex English documents into Arabic and vice
                     versa, providing the highest level of accuracy and cultural
@@ -339,17 +352,19 @@ export default function Template3Design({ data, isPremium }: Props) {
       </section>
 
       {/* Education */}
-      <section>
-        <h1 className="font-bold border-b-2 border-b-black">EDUCATION</h1>
-        <ul className="max-w-[400px] text-[13px]">
+      <section className="mt-2">
+        <h1 className="font-bold border-b-2 border-b-black text-xl">
+          EDUCATION
+        </h1>
+        <ul className="max-w-[400px]">
           {data?.education ? (
             data?.education?.map((ed, i) => (
               <li key={`Education-Design-${i}`}>
                 <div className="w-full flex items-center justify-between">
-                  <p className="font-bold">{ed?.institute}</p>
-                  <p>{ed?.passingYear}</p>
+                  <EditorText className="font-bold">{ed?.institute}</EditorText>
+                  <EditorText>{ed?.passingYear}</EditorText>
                 </div>
-                <p className="ml-2">{ed?.degree}</p>
+                <EditorText className="ml-2">{ed?.degree}</EditorText>
               </li>
             ))
           ) : (
@@ -391,11 +406,11 @@ export default function Template3Design({ data, isPremium }: Props) {
 
       {/* Skills */}
       <section className="mt-5">
-        <h1 className="font-bold border-b-2 border-b-black">Skills</h1>
-        <div className="grid grid-cols-3 text-[13px]">
+        <h1 className="font-bold border-b-2 border-b-black text-xl">Skills</h1>
+        <div className="grid grid-cols-3">
           {data?.skills ? (
             data?.skills?.map((skill, i) => (
-              <p key={`Skill-Design-${i}`}>{skill}</p>
+              <EditorText key={`Skill-Design-${i}`}>{skill}</EditorText>
             ))
           ) : (
             <>
