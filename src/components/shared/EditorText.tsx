@@ -8,9 +8,5 @@ type Props = React.DetailedHTMLProps<
 };
 
 export default function EditorText({ children, ...props }: Props) {
-  return (
-    <p {...props} contentEditable>
-      {children}
-    </p>
-  );
+  return <p {...props}>{children}</p>;
 }
