@@ -77,7 +77,7 @@ function Template3Editor({}: Props) {
       {/* Navbar for Editor */}
       <div className="w-full py-2 px-3 flex justify-between sticky top-0 z-[999]">
         <p className="font-bold text-lg px-4 py-2 bg-secondary rounded-full shadow-lg">
-          novoresume
+          magicalresume
         </p>
         <div className="py-1 pr-1 pl-5 rounded-full bg-secondary flex items-center gap-5 shadow-lg">
           <p>Font</p>
