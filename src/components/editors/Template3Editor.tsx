@@ -72,13 +72,97 @@ function Template3Editor({}: Props) {
   const [data, setData] = useState<Template3DataType>(DEFAULT_DATA);
   const [openMyContent, setOpenMyContent] = useState(false);
 
+  /***
+    It can catch all the location syntax (e.g experience.\*.points.\*) but it can support upto 2 level of indexing for deeper array changes which is enough for our template design.
+    But you can easily add more index support just by adding new index paramter (e.g `index3: number = 0`) and then add it to the `arrayLevelMapper`
+  ***/
+  // const handleChange = (
+  //   name: string,
+  //   value: any,
+  //   index: number = 0,
+  //   index2: number = 0
+  // ) => {
+  //   let _data: any = Object.assign({}, data);
+
+  //   let arrayLevelMapper: Record<number, number> = {
+  //     1: index,
+  //     2: index2,
+  //   };
+
+  //   if (name.includes('.')) {
+  //     let temp = Object.assign({}, _data);
+  //     let arrayLevel = 0;
+  //     const keys = name.split('.');
+  //     for (let i = 0; i < keys.length; i++) {
+  //       const key = keys[i];
+  //       if (key === '*') {
+  //         arrayLevel += 1;
+  //         if (keys[i + 1] != null) {
+  //           if (arrayLevelMapper[arrayLevel]) {
+  //             if (!temp[arrayLevelMapper[arrayLevel]]) {
+  //               temp[arrayLevelMapper[arrayLevel]] = {};
+  //               temp = temp[arrayLevelMapper[arrayLevel]];
+  //             } else {
+  //               temp = temp[arrayLevelMapper[arrayLevel]];
+  //             }
+  //           } else {
+  //             if (!temp[0]) {
+  //               temp[0] = {};
+  //               temp = temp[0];
+  //             } else {
+  //               temp = temp[0];
+  //             }
+  //           }
+  //         } else {
+  //           /* this is for exceptional case if it's (experience.*.points.*) which means after asterik it will return so it should first set
+  //             the appropriate value */
+  //           temp[arrayLevelMapper[arrayLevel]] = value;
+  //         }
+  //         continue;
+  //       }
+  //       /*
+  //           this is checking if it's the end key
+  //         */
+  //       if (i === keys.length - 1) {
+  //         if (Array.isArray(temp)) {
+  //           temp[arrayLevelMapper[arrayLevel]] = {
+  //             ...temp[arrayLevelMapper[arrayLevel]],
+  //             [key]: value,
+  //           };
+  //         } else {
+  //           temp[key] = value;
+  //         }
+  //       } else {
+  //         if (!temp[key]) {
+  //           if (keys[i + 1] == '*') {
+  //             temp[key] = [];
+  //             temp = temp[key];
+  //           } else {
+  //             if (!temp[key]) {
+  //               temp[key] = {};
+  //             }
+  //             temp = temp[key];
+  //           }
+  //         } else {
+  //           temp = temp[key];
+  //         }
+  //       }
+  //     }
+  //   } else {
+  //     (_data as any)[name] = value;
+  //   }
+
+  //   setData(_data);
+  // };
+
   return (
     <div className="flex flex-col h-screen relative">
       {/* Navbar for Editor */}
-      <div className="w-full py-2 px-3 flex justify-between sticky top-0 z-[999]">
+      <div className="w-full shrink-0 py-2 px-3 flex justify-between sticky top-0 z-[999]">
         <p className="font-bold text-lg px-4 py-2 bg-secondary rounded-full shadow-lg">
           magicalresume
         </p>
+        <div className="w-[200px] shrink-0 md:w-0"></div>
         <div className="py-1 pr-1 pl-5 rounded-full bg-secondary flex items-center gap-5 shadow-lg">
           <p>Font</p>
           <p>Theme</p>
@@ -88,64 +172,69 @@ function Template3Editor({}: Props) {
             Download
           </button>
         </div>
-
+        <div className="w-[200px] shrink-0 md:w-0"></div>
         <div className="p-1.5 rounded-full bg-secondary shadowl-lg">
-          <div className="h-full w-full px-6 rounded-full text-black bg-white/70 flex items-center justify-center">
+          <div className="h-full w-full px-6 rounded-full text-black bg-white/70 flex items-center justify-center whitespace-nowrap">
             <p>My Documents</p>
           </div>
         </div>
       </div>
-      <div className="mt-10 w-full h-full flex gap-5 justify-between relative overflow-hidden">
-        <div className="flex gap-3 pl-5 sticky top-0 pb-10">
-          <div className="flex flex-col gap-7 mt-9">
-            {openMyContent && (
-              <button
-                onClick={() => setOpenMyContent(false)}
-                className="bg-secondary cursor-pointer mx-auto w-[40px] h-[40px] rounded-full">
-                <p className="hover:scale-110">X</p>
-              </button>
-            )}
-            <button
-              onClick={() => setOpenMyContent(!openMyContent)}
-              className={`bg-secondary rounded-tl-xl rounded-tr-xl py-5 px-2 ${
-                openMyContent
-                  ? 'w-[70px] h-[70px] text-[12px] text-green-400'
-                  : 'w-[80px] h-[100px] text-sm'
-              }`}>
-              My Content
-            </button>
-            <button
-              className={`bg-secondary py-5 px-2 ${
-                openMyContent
-                  ? 'w-[70px] h-[70px] text-[12px]'
-                  : 'w-[80px] h-[100px] text-sm'
-              }`}>
-              Switch Template
-            </button>
-            <button
-              className={`bg-secondary rounded-bl-xl rounded-br-xl py-5 px-2 ${
-                openMyContent
-                  ? 'w-[70px] h-[70px] text-[12px]'
-                  : 'w-[80px] h-[100px] text-sm'
-              }`}>
-              AI Assistant
-            </button>
-          </div>
+
+      <div className="fixed top-[15%] flex gap-3 pl-5 pb-10 z-[800]">
+        <div className="flex flex-col gap-7">
           {openMyContent && (
-            <div className="flex flex-col gap-2">
-              <h1 className="text-xl">
-                My Content -{' '}
-                <span className="text-sm text-gray-400">Quick Access</span>
-              </h1>
-              <div className="px-2 py-1 bg-secondary rounded-xl">
-                <Template3SidePanel data={data} setData={setData} />
-              </div>
-            </div>
+            <button
+              onClick={() => setOpenMyContent(false)}
+              className="bg-secondary cursor-pointer mx-auto w-[40px] h-[40px] rounded-full">
+              <p className="hover:scale-110">X</p>
+            </button>
           )}
+          <button
+            onClick={() => setOpenMyContent(!openMyContent)}
+            className={`bg-secondary rounded-tl-xl rounded-tr-xl py-5 px-2 ${
+              openMyContent
+                ? 'w-[70px] h-[70px] text-[12px] text-green-400'
+                : 'w-[80px] h-[100px] text-sm'
+            }`}>
+            My Content
+          </button>
+          <button
+            className={`bg-secondary py-5 px-2 ${
+              openMyContent
+                ? 'w-[70px] h-[70px] text-[12px]'
+                : 'w-[80px] h-[100px] text-sm'
+            }`}>
+            Switch Template
+          </button>
+          <button
+            className={`bg-secondary rounded-bl-xl rounded-br-xl py-5 px-2 ${
+              openMyContent
+                ? 'w-[70px] h-[70px] text-[12px]'
+                : 'w-[80px] h-[100px] text-sm'
+            }`}>
+            AI Assistant
+          </button>
         </div>
-        <div className="h-full">
-          <Template3Design data={data} />
-        </div>
+        {openMyContent && (
+          <div className="flex flex-col gap-2">
+            <h1 className="text-xl">
+              My Content -{' '}
+              <span className="text-sm text-gray-400">Quick Access</span>
+            </h1>
+            <div className="px-2 py-1 bg-secondary rounded-xl h-[80%] overflow-y-scroll c-scrollbar">
+              <Template3SidePanel data={data} setData={setData} />
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-20 w-full h-full flex justify-between">
+        {/* just for alignment */}
+        <div
+          className={`${
+            openMyContent ? 'w-[300px]' : 'w-[300px] xl:w-[100px]'
+          } shrink-0`}></div>
+        <Template3Design data={data} />
 
         {/* just for alignment */}
         <div></div>

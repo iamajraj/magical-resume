@@ -6,13 +6,23 @@ import EditorText from '../shared/EditorText';
 type Props = {
   data?: Template3DataType;
   isPremium?: boolean;
+  handleChange?: (
+    name: string,
+    value: any,
+    index?: number,
+    index2?: number
+  ) => void;
 };
 
-export default function Template3Design({ data, isPremium }: Props) {
+export default function Template3Design({
+  data,
+  isPremium,
+  handleChange,
+}: Props) {
   return (
     <main
       id="template-3"
-      className="shrink-0 w-[1212px] h-[1100px] aspect-[16/9] flex flex-col px-7 py-12 bg-white text-black relative">
+      className="aspect-square w-[787px] h-[1027px] lg:w-[807px] lg:h-[1052px] xl:w-[1212px] xl:h-[1581px] flex flex-col px-7 py-12 bg-white text-black relative">
       {isPremium && (
         <Img
           src="https://cdn-icons-png.flaticon.com/512/1478/1478930.png"
@@ -20,18 +30,22 @@ export default function Template3Design({ data, isPremium }: Props) {
           className="w-16 absolute -top-6 -right-6"
         />
       )}
-      <div className="text-center space-y-2">
-        <EditorText className="text-6xl font-medium">
+      <div className="flex flex-col gap-2 items-center">
+        <EditorText
+          // onInput={(ev) => {
+          //   handleChange('info.name', (ev.target as any).textContent);
+          // }}
+          className="text-6xl font-medium w-max">
           {data?.info?.name ?? 'Mohsin Alshammari'}
         </EditorText>
-        <EditorText className="text-4xl">
+        <EditorText className="text-4xl w-max">
           {data?.info?.title ?? 'Product Manager'}
         </EditorText>
       </div>
 
       {/* Social Info */}
       <div className="mt-2 flex items-center gap-2 justify-center font-medium">
-        <div className="text-black flex items-center gap-1">
+        <div className="text-[13px] lg:text-[15px] xl:text-base text-black flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -46,7 +60,7 @@ export default function Template3Design({ data, isPremium }: Props) {
           </EditorText>
         </div>
         <p className="text-[11px]">•</p>
-        <div className="text-black flex items-center gap-1">
+        <div className="text-[13px] lg:text-[15px] xl:text-base text-black flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -70,7 +84,7 @@ export default function Template3Design({ data, isPremium }: Props) {
           </EditorText>
         </div>
         <p className="text-[11px]">•</p>
-        <div className="text-black flex items-center gap-1">
+        <div className="text-[13px] lg:text-[15px] xl:text-base text-black flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -87,7 +101,7 @@ export default function Template3Design({ data, isPremium }: Props) {
           <EditorText>{data?.socialInfo?.phone ?? '7759978644'}</EditorText>
         </div>
         <p className="text-[11px]">•</p>
-        <div className="text-black flex items-center gap-1">
+        <div className="text-[13px] lg:text-[15px] xl:text-base text-black flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -410,7 +424,9 @@ export default function Template3Design({ data, isPremium }: Props) {
         <div className="grid grid-cols-3">
           {data?.skills ? (
             data?.skills?.map((skill, i) => (
-              <EditorText key={`Skill-Design-${i}`}>{skill}</EditorText>
+              <EditorText key={`Skill-Design-${i}`} className="w-max">
+                {skill}
+              </EditorText>
             ))
           ) : (
             <>

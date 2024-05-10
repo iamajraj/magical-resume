@@ -7,6 +7,14 @@ type Props = React.DetailedHTMLProps<
   children: any;
 };
 
-export default function EditorText({ children, ...props }: Props) {
-  return <p {...props}>{children}</p>;
+export default function EditorText({ children, className, ...props }: Props) {
+  return (
+    <p
+      {...props}
+      suppressContentEditableWarning={true}
+      className={`${className} editable-style`}
+      contentEditable="true">
+      {children}
+    </p>
+  );
 }
