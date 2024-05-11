@@ -6,154 +6,104 @@ import EditorInput from '../shared/EditorInput';
 
 type Props = {};
 
-const DEFAULT_DATA = {
+export const DEFAULT_TEMPLATE3_DATA = {
   info: {
-    name: 'Mohsin Alshammari',
-    title: 'Product Manager',
+    name: 'Your Name',
+    title: 'Your Title',
   },
   socialInfo: {
-    linkedin: 'mohsinalshammari',
-    address: 'Santa Monica, California',
-    phone: '7759978644',
-    email: 'mohsinalshammari.jobs@gmail.com',
+    linkedin: 'edit linkedin',
+    address: 'edit address',
+    phone: 'edit phone',
+    email: 'edit email',
   },
-  summary: `Experienced Product Manager with a proven track record of successfully
-  launching and managing products from ideation to market. Skilled in
-  conducting market research, analyzing data, and developing product
-  strategies that align with business objectives. Adept at collaborating
-  cross-functionally with teams such as engineering, design, sales, and
-  marketing to ensure product success. Strong communication skills and
-  ability to lead teams towards achieving goals.`,
+  summary: `Add your summary...`,
   experience: [
     {
-      title: 'Founder',
-      company: 'Magical Resume',
-      location: 'San Francisco, California, United States',
-      start: '2022',
-      end: '2023',
-      points: [
-        `Partnered in the development of an AI-enabled resume writing
-        software, improving resume generation, personal branding,
-        and ATS compatibility.`,
-        `Guided the product journey from conception to launch,
-        maintaining alignment with market needs and company goals.`,
-        `Facilitated the creation of more than 3000 personalized
-        resumes using AI technology.`,
-        `Administered A/B testing and optimized UI designs,
-        contributing to a 20% enhancement in user experience scores
-        and a 15% lift in conversion rates.`,
-        `Orchestrated product development using visual roadmaps,
-        ensuring timely introduction of new features while
-        continually refining them based on customer feedback and API
-        integration.`,
-      ],
+      title: 'edit title',
+      company: 'edit company/project',
+      location: 'edit address',
+      from: 'edit start date',
+      to: 'edit end date',
+      points: [`edit point`],
     },
   ],
   education: [
     {
-      institute: 'University of Nevada, Reno',
-      degree: 'Master of Business Administration - MBA (GPA: 3.8)',
-      passingYear: '2018',
+      institute: 'edit institute',
+      degree: 'edit certificate or degree',
+      passingYear: 'edit passing year',
     },
   ],
-  skills: [
-    'Ai Applications',
-    'Agile Management',
-    'JavaScript',
-    'Ai programming and content writing',
-    'MongoDB',
-    'Roadmaps',
-  ],
+  skills: ['edit skill'],
 };
 
-export type Template3DataType = typeof DEFAULT_DATA;
+export type Template3DataType = typeof DEFAULT_TEMPLATE3_DATA;
 
 function Template3Editor({}: Props) {
-  const [data, setData] = useState<Template3DataType>(DEFAULT_DATA);
+  const [data, setData] = useState<Template3DataType>({
+    ...DEFAULT_TEMPLATE3_DATA,
+  });
   const [openMyContent, setOpenMyContent] = useState(false);
 
-  /***
-    It can catch all the location syntax (e.g experience.\*.points.\*) but it can support upto 2 level of indexing for deeper array changes which is enough for our template design.
-    But you can easily add more index support just by adding new index paramter (e.g `index3: number = 0`) and then add it to the `arrayLevelMapper`
-  ***/
-  // const handleChange = (
-  //   name: string,
-  //   value: any,
-  //   index: number = 0,
-  //   index2: number = 0
-  // ) => {
-  //   let _data: any = Object.assign({}, data);
+  const handleChange = (name: string, value: any) => {
+    let _data: any = Object.assign({}, data);
+    let keys = name.split('.');
 
-  //   let arrayLevelMapper: Record<number, number> = {
-  //     1: index,
-  //     2: index2,
-  //   };
+    let temp = _data;
 
-  //   if (name.includes('.')) {
-  //     let temp = Object.assign({}, _data);
-  //     let arrayLevel = 0;
-  //     const keys = name.split('.');
-  //     for (let i = 0; i < keys.length; i++) {
-  //       const key = keys[i];
-  //       if (key === '*') {
-  //         arrayLevel += 1;
-  //         if (keys[i + 1] != null) {
-  //           if (arrayLevelMapper[arrayLevel]) {
-  //             if (!temp[arrayLevelMapper[arrayLevel]]) {
-  //               temp[arrayLevelMapper[arrayLevel]] = {};
-  //               temp = temp[arrayLevelMapper[arrayLevel]];
-  //             } else {
-  //               temp = temp[arrayLevelMapper[arrayLevel]];
-  //             }
-  //           } else {
-  //             if (!temp[0]) {
-  //               temp[0] = {};
-  //               temp = temp[0];
-  //             } else {
-  //               temp = temp[0];
-  //             }
-  //           }
-  //         } else {
-  //           /* this is for exceptional case if it's (experience.*.points.*) which means after asterik it will return so it should first set
-  //             the appropriate value */
-  //           temp[arrayLevelMapper[arrayLevel]] = value;
-  //         }
-  //         continue;
-  //       }
-  //       /*
-  //           this is checking if it's the end key
-  //         */
-  //       if (i === keys.length - 1) {
-  //         if (Array.isArray(temp)) {
-  //           temp[arrayLevelMapper[arrayLevel]] = {
-  //             ...temp[arrayLevelMapper[arrayLevel]],
-  //             [key]: value,
-  //           };
-  //         } else {
-  //           temp[key] = value;
-  //         }
-  //       } else {
-  //         if (!temp[key]) {
-  //           if (keys[i + 1] == '*') {
-  //             temp[key] = [];
-  //             temp = temp[key];
-  //           } else {
-  //             if (!temp[key]) {
-  //               temp[key] = {};
-  //             }
-  //             temp = temp[key];
-  //           }
-  //         } else {
-  //           temp = temp[key];
-  //         }
-  //       }
-  //     }
-  //   } else {
-  //     (_data as any)[name] = value;
-  //   }
+    for (let idx = 0; idx < keys.length; idx++) {
+      let nKey = Number(keys[idx]);
+      let key = keys[idx];
 
-  //   setData(_data);
-  // };
+      if (idx === keys.length - 1) {
+        if (!isNaN(nKey)) {
+          temp[nKey] = value;
+        } else {
+          temp[key] = value;
+        }
+      } else if (temp[key] || temp[nKey]) {
+        if (!isNaN(nKey)) {
+          temp = temp[nKey];
+        } else {
+          temp = temp[key];
+        }
+      } else {
+        if (!isNaN(nKey)) {
+          temp[nKey] = [];
+          temp = temp[nKey];
+        } else {
+          temp[key] = [];
+          temp = temp[key];
+        }
+      }
+    }
+
+    setData(() => ({ ..._data }));
+  };
+
+  const handleExperienceChange = (
+    experience: Template3DataType['experience']
+  ) => {
+    setData((data) => ({
+      ...data,
+      experience: experience,
+    }));
+  };
+
+  const handleEducationChange = (education: Template3DataType['education']) => {
+    setData((data) => ({
+      ...data,
+      education: education,
+    }));
+  };
+
+  const handleSkillChange = (skills: Template3DataType['skills']) => {
+    setData((data) => ({
+      ...data,
+      skills: skills,
+    }));
+  };
 
   return (
     <div className="flex flex-col h-screen relative">
@@ -221,8 +171,14 @@ function Template3Editor({}: Props) {
               My Content -{' '}
               <span className="text-sm text-gray-400">Quick Access</span>
             </h1>
-            <div className="px-2 py-1 bg-secondary rounded-xl h-[80%] overflow-y-scroll c-scrollbar">
-              <Template3SidePanel data={data} setData={setData} />
+            <div className="px-2 py-1 bg-secondary rounded-xl h-[500px] overflow-y-scroll c-scrollbar">
+              <Template3SidePanel
+                handleEducationChange={handleEducationChange}
+                handleExperienceChange={handleExperienceChange}
+                handleSkillChange={handleSkillChange}
+                data={data}
+                setData={setData}
+              />
             </div>
           </div>
         )}
@@ -234,7 +190,13 @@ function Template3Editor({}: Props) {
           className={`${
             openMyContent ? 'w-[300px]' : 'w-[300px] xl:w-[100px]'
           } shrink-0`}></div>
-        <Template3Design data={data} />
+        <Template3Design
+          handleEducationChange={handleEducationChange}
+          handleExperienceChange={handleExperienceChange}
+          handleSkillChange={handleSkillChange}
+          handleChange={handleChange}
+          data={data}
+        />
 
         {/* just for alignment */}
         <div></div>
@@ -248,31 +210,16 @@ export default Template3Editor;
 function Template3SidePanel({
   data,
   setData,
+  handleEducationChange,
+  handleExperienceChange,
+  handleSkillChange,
 }: {
   data: Template3DataType;
   setData: React.Dispatch<React.SetStateAction<Template3DataType>>;
+  handleExperienceChange: (experience: Template3DataType['experience']) => void;
+  handleEducationChange: (education: Template3DataType['education']) => void;
+  handleSkillChange: (skills: Template3DataType['skills']) => void;
 }) {
-  const handleExperienceChange = (experience: any[]) => {
-    setData((data) => ({
-      ...data,
-      experience: experience,
-    }));
-  };
-
-  const handleEducationChange = (education: any[]) => {
-    setData((data) => ({
-      ...data,
-      education: education,
-    }));
-  };
-
-  const handleSkillChange = (skills: any[]) => {
-    setData((data) => ({
-      ...data,
-      skills: skills,
-    }));
-  };
-
   return (
     <div className="w-full shrink-0 min-w-[250px] text-white">
       {/* BASIC INFO */}
@@ -286,7 +233,7 @@ function Template3SidePanel({
       {/* SUMMARY INFO */}
       <ContainerWrapper title="Summary">
         <textarea
-          defaultValue={data.summary}
+          value={data.summary}
           className="h-[100px] text-black w-full rounded-sm p-2 text-sm"
           onChange={(ev) => {
             setData((data: any) => ({
@@ -499,7 +446,14 @@ function ExperienceEditor({
 }) {
   function addMore() {
     let experience = [...data.experience];
-    experience.push(Object.assign({}, DEFAULT_DATA.experience[0]));
+    experience.push({
+      title: '',
+      company: '',
+      location: '',
+      from: '',
+      to: '',
+      points: [``],
+    });
     handleExperienceChange(experience);
   }
 
@@ -608,19 +562,19 @@ function ExperienceInputsContainer({
         />
       </div>
       <div>
-        <p className="text-sm">Start</p>
+        <p className="text-sm">From</p>
         <EditorInput
-          value={data.experience[i].start}
-          name="start"
+          value={data.experience[i].from}
+          name="from"
           data-id={i}
           onChange={handleChange}
         />
       </div>
       <div>
-        <p className="text-sm">End</p>
+        <p className="text-sm">To</p>
         <EditorInput
-          value={data.experience[i].end}
-          name="end"
+          value={data.experience[i].to}
+          name="to"
           data-id={i}
           onChange={handleChange}
         />
@@ -649,20 +603,50 @@ function ExperiencePointsEditor({
     points.splice(idx, 1, ev.target.value);
     handlePointsChange(points);
   };
+  const deleteOne = (i: number) => {
+    points.splice(i, 1);
+    handlePointsChange(points);
+  };
 
   return (
-    <ContainerWrapper title="Points" smallTitle>
-      <div className={`flex flex-col gap-3 overflow-hidden`}>
-        {points?.map((point: any, i: number) => (
-          <EditorInput
-            key={`points-${i}`}
-            value={point}
-            point-id={i}
-            onChange={handleChange}
-          />
-        ))}
-      </div>
-    </ContainerWrapper>
+    <div className="flex flex-col">
+      <ContainerWrapper title="Points" smallTitle>
+        <div className={`flex flex-col gap-3 overflow-hidden`}>
+          {points?.map((point: any, i: number) => (
+            <div className="flex gap-2" key={`points-${i}`}>
+              <EditorInput value={point} point-id={i} onChange={handleChange} />
+              <button
+                className="text-red-500 cursor-pointer bg-white w-max rounded-full p-2"
+                onClick={() => {
+                  deleteOne(i);
+                }}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                  />
+                </svg>
+              </button>
+            </div>
+          ))}
+        </div>
+      </ContainerWrapper>
+      <button
+        onClick={() => {
+          points.push('');
+          handlePointsChange(points);
+        }}
+        className="bg-white px-2 py-1 rounded-full text-black text-sm my-2 ml-auto">
+        Add Point
+      </button>
+    </div>
   );
 }
 
@@ -675,7 +659,11 @@ function EducationEditor({
 }) {
   function addMore() {
     let education = [...data.education];
-    education.push(Object.assign({}, DEFAULT_DATA.education[0]));
+    education.push({
+      degree: '',
+      institute: '',
+      passingYear: '',
+    });
     handleEducationChange(education);
   }
 

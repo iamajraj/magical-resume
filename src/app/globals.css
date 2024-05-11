@@ -32,3 +32,7 @@ body {
   background-color: #576872;
   padding-inline: 1px;
 }
+
+li > * {
+  vertical-align: text-top !important;
+}
