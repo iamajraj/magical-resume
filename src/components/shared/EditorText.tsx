@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ContentEditable from 'react-contenteditable';
 
 type Props = {
@@ -77,7 +77,7 @@ export default function EditorText({
               className ?? ''
             } editable-style break-words inline-block`}
             suppressContentEditableWarning={true}
-            html={children ?? placeholder ?? ''}
+            html={children ?? placeholder ?? ' '}
             onChange={(ev) => {
               if (onHandleChange) {
                 onHandleChange((ev.currentTarget as any)?.id, ev.target.value);
@@ -86,7 +86,9 @@ export default function EditorText({
             tagName="p"
           />
         ) : (
-          <p className="text-gray-700 italic font-normal">{placeholder}</p>
+          <p className={`${className} text-gray-700 italic font-normal`}>
+            {placeholder}
+          </p>
         )}
       </div>
     </div>

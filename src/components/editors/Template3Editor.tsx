@@ -1,8 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Template3Design from '../templates/Template3Design';
 import EditorInput from '../shared/EditorInput';
+// @ts-ignore
+import html2pdf from 'html2pdf.js';
 
 type Props = {};
 
@@ -17,12 +19,12 @@ export const DEFAULT_TEMPLATE3_DATA = {
     phone: 'edit phone',
     email: 'edit email',
   },
-  summary: `Add your summary...`,
+  summary: `Add your summary`,
   experience: [
     {
       title: 'edit title',
       company: 'edit company/project',
-      location: 'edit address',
+      location: 'edit location',
       from: 'edit from date',
       to: 'edit to date',
       points: [`edit point`],
@@ -105,6 +107,20 @@ function Template3Editor({}: Props) {
     }));
   };
 
+  const contentRef = useRef();
+
+  const saveTemplate = () => {
+    console.log('saving..');
+    const opt = {
+      margin: 0,
+      filename: 'resume.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 4 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    };
+    html2pdf().set(opt).from(contentRef.current).save();
+  };
+
   return (
     <div className="flex flex-col h-screen relative">
       {/* Navbar for Editor */}
@@ -118,7 +134,9 @@ function Template3Editor({}: Props) {
           <p>Theme</p>
           <p>Layout</p>
           <p>Format</p>
-          <button className="h-full px-5 bg-[#2bd3bd] rounded-full">
+          <button
+            onClick={saveTemplate}
+            className="h-full px-5 bg-[#2bd3bd] rounded-full">
             Download
           </button>
         </div>
@@ -191,6 +209,7 @@ function Template3Editor({}: Props) {
             openMyContent ? 'w-[300px]' : 'w-[300px] xl:w-[100px]'
           } shrink-0`}></div>
         <Template3Design
+          ref={contentRef}
           handleEducationChange={handleEducationChange}
           handleExperienceChange={handleExperienceChange}
           handleSkillChange={handleSkillChange}

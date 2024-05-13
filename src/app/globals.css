@@ -36,3 +36,11 @@ body {
 li > * {
   vertical-align: text-top !important;
 }
+
+body {
+  line-height: 0.5 !important;
+}
+
+#template-3 {
+  line-height: normal;
+}

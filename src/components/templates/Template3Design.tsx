@@ -1,10 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import {
-  DEFAULT_TEMPLATE3_DATA,
-  Template3DataType,
-} from '../editors/Template3Editor';
+import React, { forwardRef, useState } from 'react';
+import { Template3DataType } from '../editors/Template3Editor';
 import Img from '../Img';
 import EditorText from '../shared/EditorText';
 
@@ -17,14 +14,17 @@ type Props = {
   handleSkillChange: (skills: Template3DataType['skills']) => void;
 };
 
-export default function Template3Design({
-  data,
-  isPremium,
-  handleChange,
-  handleEducationChange,
-  handleExperienceChange,
-  handleSkillChange,
-}: Props) {
+function Template3Design(
+  {
+    data,
+    isPremium,
+    handleChange,
+    handleEducationChange,
+    handleExperienceChange,
+    handleSkillChange,
+  }: Props,
+  ref: any
+) {
   function addMoreSkill() {
     let skills = [...(data?.skills ?? [])];
     skills.push('');
@@ -81,8 +81,9 @@ export default function Template3Design({
 
   return (
     <main
+      ref={ref}
       id="template-3"
-      className="aspect-square overflow-hidden w-[787px] h-[1027px] lg:w-[807px] lg:h-[1052px] xl:w-[1212px] xl:h-[1581px] flex flex-col px-7 py-12 bg-white text-black relative">
+      className="aspect-square min-h-[1123px] lg:min-h-[1123px] xl:min-h-[1123px] w-[794px] lg:w-[794px] xl:w-[794px] flex flex-col px-7 py-12 bg-white text-black relative">
       {isPremium && (
         <Img
           src="https://cdn-icons-png.flaticon.com/512/1478/1478930.png"
@@ -94,20 +95,22 @@ export default function Template3Design({
         <EditorText
           dataId="info.name"
           onHandleChange={handleChange}
-          className="text-6xl font-medium w-max">
+          placeholder="Your Name"
+          className="text-4xl font-medium w-max">
           {data?.info?.name ?? 'Mohsin Alshammari'}
         </EditorText>
         <EditorText
           onHandleChange={handleChange}
           dataId="info.title"
-          className="text-4xl w-max">
+          placeholder="Your Title"
+          className="text-2xl w-max">
           {data?.info?.title ?? 'Product Manager'}
         </EditorText>
       </div>
 
       {/* Social Info */}
       <div className="mt-2 flex items-center gap-2 justify-center font-medium">
-        <div className="text-[13px] lg:text-[15px] xl:text-base text-black flex items-center gap-1">
+        <div className="text-[13px] text-black flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -120,6 +123,7 @@ export default function Template3Design({
           <div className="flex items-center">
             <p>in/</p>
             <EditorText
+              placeholder="edit linkedin"
               onHandleChange={handleChange}
               dataId="socialInfo.linkedin">
               {data?.socialInfo?.linkedin ?? 'mohsinalshammari'}
@@ -127,7 +131,7 @@ export default function Template3Design({
           </div>
         </div>
         <p className="text-[11px]">•</p>
-        <div className="text-[13px] lg:text-[15px] xl:text-base text-black flex items-center gap-1">
+        <div className="text-[13px] text-black flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -146,12 +150,15 @@ export default function Template3Design({
               d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
             />
           </svg>
-          <EditorText onHandleChange={handleChange} dataId="socialInfo.address">
+          <EditorText
+            placeholder="edit address"
+            onHandleChange={handleChange}
+            dataId="socialInfo.address">
             {data?.socialInfo?.address ?? 'Santa Monica, California'}
           </EditorText>
         </div>
         <p className="text-[11px]">•</p>
-        <div className="text-[13px] lg:text-[15px] xl:text-base text-black flex items-center gap-1">
+        <div className="text-[13px] text-black flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -165,12 +172,15 @@ export default function Template3Design({
               d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
             />
           </svg>
-          <EditorText onHandleChange={handleChange} dataId="socialInfo.phone">
+          <EditorText
+            placeholder="edit phone"
+            onHandleChange={handleChange}
+            dataId="socialInfo.phone">
             {data?.socialInfo?.phone ?? '7759978644'}
           </EditorText>
         </div>
         <p className="text-[11px]">•</p>
-        <div className="text-[13px] lg:text-[15px] xl:text-base text-black flex items-center gap-1">
+        <div className="text-[13px] text-black flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -184,19 +194,25 @@ export default function Template3Design({
               d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
             />
           </svg>
-          <EditorText onHandleChange={handleChange} dataId="socialInfo.email">
+          <EditorText
+            placeholder="edit email"
+            onHandleChange={handleChange}
+            dataId="socialInfo.email">
             {data?.socialInfo?.email ?? 'mohsinalshammari.jobs@gmail.com'}
           </EditorText>
         </div>
       </div>
 
       {/* SUMMARY */}
-      <section className="mt-2 overflow-hidden">
-        <h1 className="font-bold border-b-2 border-b-black text-xl">SUMMARY</h1>
+      <section className="mt-2">
+        <h1 className="font-bold border-b-2 border-b-black text-base">
+          SUMMARY
+        </h1>
         <EditorText
           onHandleChange={handleChange}
           dataId="summary"
-          className="border-b-2 w-full"
+          placeholder="Add your summary"
+          className="border-b-2 w-full text-sm"
           containerClassName="w-full">
           {data?.summary ??
             `Experienced Product Manager with a proven track record of successfully
@@ -211,12 +227,12 @@ export default function Template3Design({
 
       {/* Experience */}
       <section className="mt-5 group relative">
-        <h1 className="font-bold border-b-2 border-b-black text-xl">
+        <h1 className="font-bold border-b-2 border-b-black text-base">
           EXPERIENCE
         </h1>
         <button
           onClick={addMoreExperience}
-          className="hidden group-hover:block absolute cursor-pointer active:scale-110 transition-all -top-[1.5%] -left-[1.5%] bg-gray-700 rounded-full">
+          className="hidden group-hover:block absolute cursor-pointer active:scale-110 transition-all -top-[10px] -left-[10px] bg-gray-700 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -444,12 +460,12 @@ export default function Template3Design({
 
       {/* Education */}
       <section className="group relative mt-2">
-        <h1 className="font-bold border-b-2 border-b-black text-xl">
+        <h1 className="font-bold border-b-2 border-b-black text-base">
           EDUCATION
         </h1>
         <button
           onClick={addMoreEducation}
-          className="hidden group-hover:block absolute cursor-pointer active:scale-110 transition-all -top-[1.5%] -left-[1.5%] bg-gray-700 rounded-full">
+          className="hidden group-hover:block absolute cursor-pointer active:scale-110 transition-all -top-[10px] -left-[10px] bg-gray-700 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -514,7 +530,9 @@ export default function Template3Design({
 
       {/* Skills */}
       <section className="group relative mt-5">
-        <h1 className="font-bold border-b-2 border-b-black text-xl">SKILLS</h1>
+        <h1 className="font-bold border-b-2 border-b-black text-base">
+          SKILLS
+        </h1>
         <button
           onClick={addMoreSkill}
           className="hidden group-hover:block absolute cursor-pointer active:scale-110 transition-all -top-[1.5%] -left-[1.5%] bg-gray-700 rounded-full">
@@ -544,7 +562,7 @@ export default function Template3Design({
                 dataId={`skills.${i}`}
                 key={`Skill-Design-${i}`}
                 containerClassName="w-max"
-                className="w-max">
+                className="w-max text-sm">
                 {skill}
               </EditorText>
             ))
@@ -572,6 +590,8 @@ export default function Template3Design({
     </main>
   );
 }
+
+export default forwardRef(Template3Design);
 
 function EducationContainer({
   ed,
@@ -617,21 +637,22 @@ function EducationContainer({
           placeholder="edit institute"
           onHandleChange={handleChange}
           dataId={`education.${i}.institute`}
-          className="font-bold">
+          className="font-bold text-sm">
           {ed?.institute}
         </EditorText>
         <EditorText
           placeholder="edit passing year"
           onHandleChange={handleChange}
+          className="text-sm"
           dataId={`education.${i}.passingYear`}>
           {ed?.passingYear}
         </EditorText>
       </div>
       <EditorText
-        placeholder="edit degree"
+        placeholder="edit certificate or degree"
         onHandleChange={handleChange}
         dataId={`education.${i}.degree`}
-        className="ml-2">
+        className="ml-2 text-sm">
         {ed?.degree}
       </EditorText>
     </li>
@@ -709,6 +730,7 @@ function ExperienceContainer({
         <EditorText
           placeholder="edit title"
           onHandleChange={handleChange}
+          className="text-sm"
           dataId={`experience.${expIdx}.title`}>
           {exp?.title}
         </EditorText>
@@ -716,6 +738,7 @@ function ExperienceContainer({
         <EditorText
           placeholder="edit company/project"
           onHandleChange={handleChange}
+          className="text-sm"
           dataId={`experience.${expIdx}.company`}>
           {exp?.company}
         </EditorText>
@@ -723,6 +746,7 @@ function ExperienceContainer({
         <EditorText
           placeholder="edit location"
           onHandleChange={handleChange}
+          className="text-sm"
           dataId={`experience.${expIdx}.location`}>
           {exp?.location}
         </EditorText>
@@ -730,6 +754,7 @@ function ExperienceContainer({
         <EditorText
           placeholder="edit from date"
           onHandleChange={handleChange}
+          className="text-sm"
           dataId={`experience.${expIdx}.from`}>
           {exp?.from}
         </EditorText>
@@ -737,6 +762,7 @@ function ExperienceContainer({
         <EditorText
           placeholder="edit to date"
           onHandleChange={handleChange}
+          className="text-sm"
           dataId={`experience.${expIdx}.to`}>
           {exp?.to}
         </EditorText>
@@ -779,7 +805,7 @@ function ExperiencePoints({
           dataId={`experience.${expIdx}.points.${pointIdx}`}
           onHandleChange={handleChange}
           isArray
-          className="align-text-top"
+          className="align-text-top text-sm"
           onDelete={(pointIdx) => {
             onExperiencePointsDelete(expIdx, pointIdx);
           }}
