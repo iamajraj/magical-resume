@@ -97,7 +97,7 @@ function Template3Design(
           onHandleChange={handleChange}
           placeholder="Your Name"
           className="text-4xl font-medium w-max">
-          {data?.info?.name ?? 'Mohsin Alshammari'}
+          {data?.info?.name ?? 'Md Raj'}
         </EditorText>
         <EditorText
           onHandleChange={handleChange}
@@ -126,7 +126,7 @@ function Template3Design(
               placeholder="edit linkedin"
               onHandleChange={handleChange}
               dataId="socialInfo.linkedin">
-              {data?.socialInfo?.linkedin ?? 'mohsinalshammari'}
+              {data?.socialInfo?.linkedin ?? 'johndoe'}
             </EditorText>
           </div>
         </div>
@@ -154,7 +154,7 @@ function Template3Design(
             placeholder="edit address"
             onHandleChange={handleChange}
             dataId="socialInfo.address">
-            {data?.socialInfo?.address ?? 'Santa Monica, California'}
+            {data?.socialInfo?.address ?? 'NY, USA'}
           </EditorText>
         </div>
         <p className="text-[11px]">•</p>
@@ -176,7 +176,7 @@ function Template3Design(
             placeholder="edit phone"
             onHandleChange={handleChange}
             dataId="socialInfo.phone">
-            {data?.socialInfo?.phone ?? '7759978644'}
+            {data?.socialInfo?.phone ?? '1122334455'}
           </EditorText>
         </div>
         <p className="text-[11px]">•</p>
@@ -198,7 +198,7 @@ function Template3Design(
             placeholder="edit email"
             onHandleChange={handleChange}
             dataId="socialInfo.email">
-            {data?.socialInfo?.email ?? 'mohsinalshammari.jobs@gmail.com'}
+            {data?.socialInfo?.email ?? 'johndoe.jobs@gmail.com'}
           </EditorText>
         </div>
       </div>
@@ -296,160 +296,6 @@ function Template3Design(
                     ensuring timely introduction of new features while
                     continually refining them based on customer feedback and API
                     integration.
-                  </li>
-                </ul>
-              </li>
-
-              <li>
-                <div className="flex items-center gap-1 font-bold ">
-                  <p>Product Manager</p>
-                  <p>|</p>
-                  <p>Claimyr</p>
-                  <p>|</p>
-                  <p>San Francisco, California, United States</p>
-                  <p>|</p>
-                  <p>2021-/2021</p>
-                </div>
-
-                <ul className="ml-10 list-disc mt-1">
-                  <li>
-                    Oversaw the introduction of digital products in 15 states,
-                    thereby expanding market reach and achieving over a million
-                    dollars in monthly revenue
-                  </li>
-                  <li>
-                    Streamlined strategic business operations and planning,
-                    leading to improved team collaboration, prioritization, and
-                    customer satisfaction
-                  </li>
-                  <li>
-                    Directed business software products, incorporating client
-                    feedback into product enhancements that increased cross-team
-                    collaboration by 30%.
-                  </li>
-                  <li>
-                    Coordinated diverse teams, practicing agile methodologies,
-                    which led to clear project objectives and transparent
-                    deliverables
-                  </li>
-                  <li>
-                    Hired and trained team members, advocating for an
-                    employee-centric approach and open-door policy.
-                  </li>
-                </ul>
-              </li>
-
-              <li>
-                <div className="flex items-center gap-1 font-bold ">
-                  <p>Product Manager</p>
-                  <p>|</p>
-                  <p>Network Operation Telecom CO.</p>
-                  <p>|</p>
-                  <p>Riyad, Saudi Arabia</p>
-                  <p>|</p>
-                  <p>2019-/2021</p>
-                </div>
-
-                <ul className="ml-10 list-disc mt-1">
-                  <li>
-                    Developed and executed product strategies as a Senior
-                    Product Manager, gaining a strong understanding of
-                    Riyadh&apos;s tech industry trends.
-                  </li>
-                  <li>
-                    Adopted agile development practices, enhancing team
-                    knowledge and expediting the software development
-                    environment.
-                  </li>
-                  <li>
-                    Utilized my degree in Economics and technical expertise to
-                    collaborate with tech teams in creating innovative
-                    construction management solutions.
-                  </li>
-                  <li>
-                    Conducted economic feasibility studies for future planning,
-                    attracting more investments into the area and fostering a
-                    thriving business ecosystem.
-                  </li>
-                  <li>
-                    Cooperated with cross-functional teams in a matrix
-                    organization to ensure successful program management and
-                    delivery of complex, scalable products.
-                  </li>
-                </ul>
-              </li>
-
-              <li>
-                <div className="flex items-center gap-1 font-bold ">
-                  <p>Project Manager</p>
-                  <p>|</p>
-                  <p>Network Operation Telecom CO.</p>
-                  <p>|</p>
-                  <p>Saudi Arabia</p>
-                  <p>|</p>
-                  <p>2014-/2016</p>
-                </div>
-
-                <ul className="ml-10 list-disc mt-1">
-                  <li>
-                    Managed project personnel to ensure on-time and
-                    within-budget project progression.
-                  </li>
-                  <li>
-                    Formulated detailed project plans, including scope, budget,
-                    and schedule, and monitored project performance to meet all
-                    objectives.
-                  </li>
-                  <li>
-                    Cultivated relationships with all stakeholders, maintaining
-                    clear communication and alignment on project goals.
-                  </li>
-                  <li>
-                    Established risk management processes to identify, assess,
-                    and mitigate project risks.
-                  </li>
-                  <li>
-                    Conducted post-project evaluations to glean insights for
-                    future initiatives.
-                  </li>
-                </ul>
-              </li>
-
-              <li>
-                <div className="flex items-center gap-1 font-bold ">
-                  <p>Interpreter</p>
-                  <p>|</p>
-                  <p>Northern Nevada International Center</p>
-                  <p>|</p>
-                  <p>Reno, Nevada</p>
-                  <p>|</p>
-                  <p>2011-/2012</p>
-                </div>
-
-                <ul className="ml-10 list-disc mt-1">
-                  <li>
-                    Translated complex English documents into Arabic and vice
-                    versa, providing the highest level of accuracy and cultural
-                    relevance.
-                  </li>
-                  <li>
-                    Performed simultaneous interpretation for high-level
-                    meetings and conferences.
-                  </li>
-                  <li>
-                    Worked closely with clients to understand their needs,
-                    delivering tailored interpretation services to enhance
-                    cross-cultural interactions.
-                  </li>
-                  <li>
-                    Provided written translation services for various materials
-                    including legal documents, technical manuals, and business
-                    correspondences.
-                  </li>
-                  <li>
-                    Conducted language proficiency training sessions, sharing
-                    strategies to improve bilingual communication skills within
-                    the organization.
                   </li>
                 </ul>
               </li>

@@ -17,7 +17,7 @@ export default function Template1Design({ isPremium = true }: Props) {
       )}
       <section className="text-white w-[30%] h-full pt-2 pb-10">
         <div className="px-3">
-          <h1 className="text-3xl font-semibold">John Smith</h1>
+          <h1 className="text-3xl font-semibold">Md Raj</h1>
           <p className="opacity-80">IT Project Manager</p>
         </div>
 

@@ -15,7 +15,7 @@ export default function Template2Design({ isPremium }: Props) {
           className="w-16 absolute -top-6 -right-6"
         />
       )}
-      <h1 className="text-3xl font-bold text-[#013C74]">John Smith</h1>
+      <h1 className="text-3xl font-bold text-[#013C74]">Md Raj</h1>
       <p className="opacity-90 font-medium text-[#013C74]">
         IT Project Manager
       </p>

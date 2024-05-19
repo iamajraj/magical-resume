@@ -37,7 +37,8 @@ li > * {
   vertical-align: text-top !important;
 }
 
-body {
+
+body:has(#editor) {
   line-height: 0.5 !important;
 }
 

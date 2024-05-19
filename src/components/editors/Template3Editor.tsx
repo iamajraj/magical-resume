@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Template3Design from '../templates/Template3Design';
 import EditorInput from '../shared/EditorInput';
 // @ts-ignore
 import html2pdf from 'html2pdf.js';
+import Link from 'next/link';
+
 
 type Props = {};
 
@@ -122,12 +124,12 @@ function Template3Editor({}: Props) {
   };
 
   return (
-    <div className="flex flex-col h-screen relative">
+    <div  id='editor' className="flex flex-col h-screen relative">
       {/* Navbar for Editor */}
       <div className="w-full shrink-0 py-2 px-3 flex justify-between sticky top-0 z-[999]">
-        <p className="font-bold text-lg px-4 py-2 bg-secondary rounded-full shadow-lg">
+        <Link href="/" className="font-bold text-lg px-4 py-2 bg-secondary rounded-full shadow-lg">
           magicalresume
-        </p>
+        </Link>
         <div className="w-[200px] shrink-0 md:w-0"></div>
         <div className="py-1 pr-1 pl-5 rounded-full bg-secondary flex items-center gap-5 shadow-lg">
           <p>Font</p>
@@ -163,7 +165,7 @@ function Template3Editor({}: Props) {
               openMyContent
                 ? 'w-[70px] h-[70px] text-[12px] text-green-400'
                 : 'w-[80px] h-[100px] text-sm'
-            }`}>
+            } leading-[16px]`}>
             My Content
           </button>
           <button
@@ -171,7 +173,7 @@ function Template3Editor({}: Props) {
               openMyContent
                 ? 'w-[70px] h-[70px] text-[12px]'
                 : 'w-[80px] h-[100px] text-sm'
-            }`}>
+            } leading-[16px]`}>
             Switch Template
           </button>
           <button
@@ -179,7 +181,7 @@ function Template3Editor({}: Props) {
               openMyContent
                 ? 'w-[70px] h-[70px] text-[12px]'
                 : 'w-[80px] h-[100px] text-sm'
-            }`}>
+            } leading-[16px]`}>
             AI Assistant
           </button>
         </div>
@@ -374,7 +376,7 @@ function BasicInfoEditor({
               info: { ...data.info, name: ev.target.value },
             }));
           }}
-          placeholder="John Doe"
+          placeholder="Md Raj"
         />
       </div>
       <div className="space-y-2">

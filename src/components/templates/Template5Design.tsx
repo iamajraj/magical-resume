@@ -20,7 +20,7 @@ export default function Template5Design({ isPremium }: Props) {
       <section className="flex justify-between gap-5 bg-[#34678C] px-5 py-7 pb-6">
         {/* USER INFO */}
         <div>
-          <h1 className="text-4xl text-white">Mohsinzxb Sorari</h1>
+          <h1 className="text-4xl text-white">Md Raj</h1>
           <p className="text-[#F26464]">Professional Title</p>
           <p className="mt-2 text-white/70 text-[13px]">
             Short and engaging pitch about yourself.
@@ -39,7 +39,7 @@ export default function Template5Design({ isPremium }: Props) {
       <section className="bg-[#2B5670] flex items-center gap-5 text-[12px] text-white justify-center py-2">
         <div className="flex items-center gap-1">
           <Img src="/mail.svg" alt="mail" className="w-3" />
-          <p> mohsinb.alshammari@gmail.com</p>
+          <p> johndoe@gmail.com</p>
         </div>
         <div className="flex items-center gap-1">
           <Img src="/phone.svg" alt="phone" className="w-3" />
